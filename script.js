@@ -55,10 +55,10 @@ function game(){
         let computerS = computerSelection();
         let playerS = playerSelection();
         console.log(playRound(computerS, playerS));
-        if(playerScore==3){
+        if(playerScore==5){
             console.log("Player won!");
             break;
-        } else if(computerScore==3){
+        } else if(computerScore==5){
             console.log("Computer won!");
             break;
         }
