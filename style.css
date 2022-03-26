@@ -1,0 +1,68 @@
+body{
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+}
+.btns{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 500px;
+    background-color: blanchedalmond;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    height: 250px;
+    width: 200px;
+    margin: 25px;
+}
+.result {
+    background-color: antiquewhite;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    max-height: 500px;
+}
+.scores{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 500px;
+    background-color: blanchedalmond;
+    justify-content: center;
+    align-items: center;
+}
+.score{
+    height: 100px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+#computerScore,
+#playerScore{
+    font-size: 40px;
+    margin: 50px;
+}
+.win{
+  font-size: 100px;
+  margin-top: 150px;
+}
+.game{
+    display: flex;
+    height: 500px;
+    width: 100%;
+    
+}
+.end{
+    margin-top: auto;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

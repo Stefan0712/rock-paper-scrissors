@@ -16,41 +16,116 @@ function computerSelection(){
     }
     
 }
-function playerSelection(){
-    let selection = prompt("Enter your choice: ");
-    return selection;
+function checkGame(playScore,computerScore){
+        const winContainer = document.querySelector('.win');
+        const content = document.createElement("h1");
+        content.classList.add('winContent');
+        const btns = document.querySelector(".btns");
+        
+    if(playScore==5){
+        
+        content.textContent = "Player wins!";
+        document.getElementById("rock").setAttribute('disabled', 'disabled');
+        document.getElementById("paper").setAttribute('disabled', 'disabled');
+        document.getElementById("scissors").setAttribute('disabled', 'disabled');
+
+        
+    }
+    if(computerScore==5){
+       
+        content.textContent = "Computer wins!";
+        document.getElementById("rock").setAttribute('disabled', 'disabled');
+        document.getElementById("paper").setAttribute('disabled', 'disabled');
+        document.getElementById("scissors").setAttribute('disabled', 'disabled');
+    }
+    winContainer.appendChild(content);
+
 }
 
-function playRound(computerSelection, playerSelection){
+function playRound(playerSelection){
 
-    var computer  = computerSelection;
+    var computer  = computerSelection();
     var player = playerSelection;
 
     if(computer=="scissors" && player=="paper"){
         computerScore++;
-        return "You lose! Scissors beats paper";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "You lose! Scissors beats paper";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
     } else if(computer=="rock" && player=="paper"){
         playerScore++;
-        return "You win! Paper beats rock";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "You win! Paper beats rock";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
+
     } else if(computer=="paper" && player=="rock"){
         computerScore++;
-        return "You lose! Paper beats rock";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "You lose! Paper beats rock";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
+
     } else if(computer=="scissors" && player=="rock"){
         playerScore++;
-        return "You win! Rock beats scissors";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "You win! Rock beats scissors";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
+
     } else if(computer=="paper" && player=="scissors"){
         playerScore++;
-        return "You win! Scissors beats paper";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "You win! Scissors beats paper";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
+
     } else if(computer=="rock" && player=="scissors"){
-        computerScote++;
-        return "You lose! Rock beats scissors";
+        computerScore++;
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent ="You lose! Rock beats scissors";
+        container.appendChild(content);
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('computerScore').innerHTML = computerScore;
+        checkGame(playerScore,computerScore);
+
     }else {
-        return "It's a Draw!";
+        const container = document.querySelector('.result');
+        const content = document.createElement("p");
+        content.classList.add('content');
+        content.textContent = "It's a Draw!";
+        container.appendChild(content);
+        checkGame(playerScore,computerScore);
+
     }
     
 }
 
-function game(){
+
+/*function game(){
     for(let i=0;i<10;i++){
         let computerS = computerSelection();
         let playerS = playerSelection();
@@ -65,4 +140,5 @@ function game(){
     }
 }
 game();
+*/
 
