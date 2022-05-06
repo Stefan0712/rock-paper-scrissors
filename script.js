@@ -1,3 +1,8 @@
+const playerMove = document.querySelector('.playerMove')
+const computerMove = document.querySelector('.computerMove')
+
+
+
 let playerScore = 0;
 let computerScore = 0;
 function computerSelection(){
@@ -48,6 +53,8 @@ function playRound(playerSelection){
     var player = playerSelection;
 
     if(computer=="scissors" && player=="paper"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         computerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -58,6 +65,8 @@ function playRound(playerSelection){
         document.getElementById('computerScore').innerHTML = computerScore;
         checkGame(playerScore,computerScore);
     } else if(computer=="rock" && player=="paper"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         playerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -69,6 +78,8 @@ function playRound(playerSelection){
         checkGame(playerScore,computerScore);
 
     } else if(computer=="paper" && player=="rock"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         computerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -80,6 +91,8 @@ function playRound(playerSelection){
         checkGame(playerScore,computerScore);
 
     } else if(computer=="scissors" && player=="rock"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         playerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -91,6 +104,8 @@ function playRound(playerSelection){
         checkGame(playerScore,computerScore);
 
     } else if(computer=="paper" && player=="scissors"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         playerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -102,6 +117,8 @@ function playRound(playerSelection){
         checkGame(playerScore,computerScore);
 
     } else if(computer=="rock" && player=="scissors"){
+        showPlayerMove(player)
+        showComputerMove(computer)
         computerScore++;
         const container = document.querySelector('.result');
         const content = document.createElement("p");
@@ -113,6 +130,8 @@ function playRound(playerSelection){
         checkGame(playerScore,computerScore);
 
     }else {
+        showPlayerMove(player)
+        showComputerMove(computer)
         const container = document.querySelector('.result');
         const content = document.createElement("p");
         content.classList.add('content');
@@ -123,22 +142,55 @@ function playRound(playerSelection){
     }
     
 }
-
-
-/*function game(){
-    for(let i=0;i<10;i++){
-        let computerS = computerSelection();
-        let playerS = playerSelection();
-        console.log(playRound(computerS, playerS));
-        if(playerScore==5){
-            console.log("Player won!");
-            break;
-        } else if(computerScore==5){
-            console.log("Computer won!");
-            break;
-        }
+function showPlayerMove(move){
+    let firstMove = true;
+    if(firstMove==true){
+        firstMove=false;
+        
+    }else {
+        document.querySelector('.moveImg').remove();
     }
+    if(move=='rock'){
+        
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/rock.jpg')"
+        playerMove.appendChild(img);
+    }else if(move=='paper'){
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/paper.svg')"
+        playerMove.appendChild(img);
+    }else if(move=='scrissors'){
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/scissors.svg')"
+        playerMove.appendChild(img);
+    } 
 }
-game();
-*/
+function showComputerMove(move){
+    let firstMove = true;
+    if(firstMove==true){
+        firstMove=false;
+        
+    }else {
+        document.querySelector('.moveImg').remove();
+    }
+    if(move=='rock'){
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/rock.jpg')"
+        computerMove.appendChild(img);
+    }else if(move=='paper'){
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/paper.svg')"
+        computerMove.appendChild(img);
+    }else if(move=='scrissors'){
+        const img = document.createElement('div')
+        img.classList.add('moveImg');
+        img.style.cssText = "background-image: url('./imgs/scissors.svg')"
+        computerMove.appendChild(img);
+    } 
+} 
 

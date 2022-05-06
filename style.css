@@ -48,8 +48,9 @@ body{
     margin: 50px;
 }
 .win{
-  font-size: 100px;
-  margin-top: 150px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
 }
 .game{
     display: flex;
@@ -65,4 +66,42 @@ body{
     justify-content: center;
     align-items: center;
 
+}
+#rock{
+    background-image: url('./imgs/rock.jpg');
+}
+#paper{
+    background-image: url('./imgs/paper.svg');
+}
+#scissors{
+    background-image: url('./imgs/scissors.svg');
+}
+#rock,
+#paper,
+#scissors{
+    background-repeat: no-repeat;
+    background-size: 100px;
+}
+.showMoves{
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+    height: 250px;  
+}
+.moveImg{
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-size: 200px;
+}
+.vs{
+    font-size: 100px;
+}
+.playerMove,
+.computerMove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
