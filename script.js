@@ -1,196 +1,172 @@
-const playerMove = document.querySelector('.playerMove')
-const computerMove = document.querySelector('.computerMove')
-
-
-
 let playerScore = 0;
-let computerScore = 0;
-function computerSelection(){
-    let computerChoice;
-    var nr = Math.floor(Math.random(1)*3)+1;
-    switch(nr){
-    case 1:
-        return "scissors";
-        break;
-    case 2:
-        return "paper";
-        break;
-    case 3:
-        return "rock";
-        break;
+let aiScore = 0;
+let playerMove;
+let aiMove;
+let winner;
+let gameWinner;
+let isGameStarted = false;
+
+
+
+
+const addToHistory = (option, p) =>{
+    const historyDiv = document.querySelector(".history");
+    const el = document.createElement("img");
+    el.classList.add("history-item")
+    if(p==="ai"){
+        el.classList.add("ai-item")
+    }else if(p==="player"){
+        el.classList.add("player-item")
     }
+    el.setAttribute('src',option)
+    historyDiv.appendChild(el)
+
+}
+const showPlayerChoice = (img) =>{
+    let playerBoard = document.querySelector(".player-move");
     
-}
-function checkGame(playScore,computerScore){
-        const winContainer = document.querySelector('.win');
-        const content = document.createElement("h1");
-        content.classList.add('winContent');
-        const btns = document.querySelector(".btns");
-        
-    if(playScore==5){
-        
-        content.textContent = "Player wins!";
-        document.getElementById("rock").setAttribute('disabled', 'disabled');
-        document.getElementById("paper").setAttribute('disabled', 'disabled');
-        document.getElementById("scissors").setAttribute('disabled', 'disabled');
-
-        
+    if(playerBoard.children.length > 0){
+        document.querySelector('.player-choice').classList.add("moveUp")
+        setTimeout(()=>{
+            playerBoard.removeChild(document.querySelector(".player-choice"))
+        }, 1000)
     }
-    if(computerScore==5){
-       
-        content.textContent = "Computer wins!";
-        document.getElementById("rock").setAttribute('disabled', 'disabled');
-        document.getElementById("paper").setAttribute('disabled', 'disabled');
-        document.getElementById("scissors").setAttribute('disabled', 'disabled');
-    }
-    winContainer.appendChild(content);
-
-}
-
-function playRound(playerSelection){
-
-    var computer  = computerSelection();
-    var player = playerSelection;
-
-    if(computer=="scissors" && player=="paper"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        computerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "You lose! Scissors beats paper";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-    } else if(computer=="rock" && player=="paper"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        playerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "You win! Paper beats rock";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-
-    } else if(computer=="paper" && player=="rock"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        computerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "You lose! Paper beats rock";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-
-    } else if(computer=="scissors" && player=="rock"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        playerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "You win! Rock beats scissors";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-
-    } else if(computer=="paper" && player=="scissors"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        playerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "You win! Scissors beats paper";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-
-    } else if(computer=="rock" && player=="scissors"){
-        showPlayerMove(player)
-        showComputerMove(computer)
-        computerScore++;
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent ="You lose! Rock beats scissors";
-        container.appendChild(content);
-        document.getElementById('playerScore').innerHTML = playerScore;
-        document.getElementById('computerScore').innerHTML = computerScore;
-        checkGame(playerScore,computerScore);
-
-    }else {
-        showPlayerMove(player)
-        showComputerMove(computer)
-        const container = document.querySelector('.result');
-        const content = document.createElement("p");
-        content.classList.add('content');
-        content.textContent = "It's a Draw!";
-        container.appendChild(content);
-        checkGame(playerScore,computerScore);
-
-    }
+    let playerEl = document.createElement("img");
+    playerEl.classList.add("player-choice")
+    playerEl.setAttribute('src',img)
+    playerBoard.appendChild(playerEl)
+    setTimeout(()=>{
+        document.querySelector('.player-choice').classList.add("moveCenter")
+    }, 100)
     
-}
-function showPlayerMove(move){
-    let firstMove = true;
-    if(firstMove==true){
-        firstMove=false;
-        
-    }else {
-        document.querySelector('.moveImg').remove();
-    }
-    if(move=='rock'){
-        
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/rock.jpg')"
-        playerMove.appendChild(img);
-    }else if(move=='paper'){
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/paper.svg')"
-        playerMove.appendChild(img);
-    }else if(move=='scrissors'){
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/scissors.svg')"
-        playerMove.appendChild(img);
-    } 
-}
-function showComputerMove(move){
-    let firstMove = true;
-    if(firstMove==true){
-        firstMove=false;
-        
-    }else {
-        document.querySelector('.moveImg').remove();
-    }
-    if(move=='rock'){
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/rock.jpg')"
-        computerMove.appendChild(img);
-    }else if(move=='paper'){
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/paper.svg')"
-        computerMove.appendChild(img);
-    }else if(move=='scrissors'){
-        const img = document.createElement('div')
-        img.classList.add('moveImg');
-        img.style.cssText = "background-image: url('./imgs/scissors.svg')"
-        computerMove.appendChild(img);
-    } 
-} 
+   
 
+   
+
+
+ }
+ const showAiChoice = (aiImg) =>{
+    let aiBoard = document.querySelector(".ai-move");
+
+    if(aiBoard.children.length > 0){
+        aiBoard.removeChild(document.querySelector(".ai-choice"))
+    }
+
+    let aiEl = document.createElement("img");
+    aiEl.classList.add("ai-choice")
+    aiEl.setAttribute('src',aiImg)
+    aiBoard.appendChild(aiEl)
+ }
+
+const handleRock = () => {
+    let img = "./imgs/rock.jpg"
+    playerMove = "rock";
+    showPlayerChoice(img);
+    addToHistory(img,"player")
+    handleAi();
+    compare();
+
+}
+const handlePaper = () => {
+    let img = "./imgs/paper.svg";
+    playerMove = "paper";
+    showPlayerChoice(img);
+    addToHistory(img,"player")
+    handleAi();
+    compare();
+}
+const handleScissors = () => {
+     let img = "./imgs/scissors.svg"
+    playerMove = "scissors";
+    showPlayerChoice(img);
+    addToHistory(img,"player")
+    handleAi();
+    compare();
+}
+
+const handleAi = () =>{
+    let nr = Math.round(Math.random()*5)
+    if(nr === 0 || nr===3){
+        let aiImg = "./imgs/rock.jpg"
+        showAiChoice(aiImg)
+        addToHistory(aiImg,"ai")
+        aiMove="rock"
+    }else if(nr === 1 || nr===4){
+        let aiImg = "./imgs/paper.svg";
+        showAiChoice(aiImg)
+        addToHistory(aiImg,"ai")
+        aiMove="paper"
+
+    }else if(nr===2 || nr===5){
+        let aiImg = "./imgs/scissors.svg"
+        showAiChoice(aiImg)
+        addToHistory(aiImg,"ai")
+        aiMove="scissors";
+    }
+}
+
+const compare = () =>{
+    if(playerMove==="rock" && aiMove==="paper"){
+        winner = "Ai";
+    }else if(playerMove==="rock" && aiMove==="rock"){
+        winner = "Tie";
+    }else if(playerMove==="rock" && aiMove==="scissors"){
+        winner = "Player";
+    }else if(playerMove==="paper" && aiMove==="paper"){
+        winner = "Tie";
+    }else if(playerMove==="paper" && aiMove==="rock"){
+        winner = "Player";
+    }else if(playerMove==="paper" && aiMove==="scissors"){
+        winner = "Ai";
+    }else if(playerMove==="scissors" && aiMove==="paper"){
+        winner = "Player";
+    }else if(playerMove==="scissors" && aiMove==="rock"){
+        winner = "Ai";
+    }else if(playerMove==="scissors" && aiMove==="scissors"){
+        winner = "Tie";
+    }
+    handleGame(winner);
+    document.querySelector(".result").innerHTML = winner
+}
+
+
+ const startGame = () =>{
+    if(!isGameStarted){
+        document.querySelector(".start-screen").classList.remove("show")
+        document.querySelector(".game").classList.remove("hidden")
+    }
+ }
+
+ const handleGame = () =>{
+    let player1Score = document.querySelector(".player-score")
+    let player2Score = document.querySelector(".ai-score")
+    if(winner==="Player"){
+        playerScore++;
+        player1Score.textContent = playerScore
+        
+    }else if(winner==="Ai"){
+        aiScore++;
+        player2Score.textContent = aiScore
+    }
+    checkScore();
+    
+ }
+
+ const checkScore = () =>{
+    if(playerScore===5){
+        gameWinner = "Player"
+        endGame();
+    }
+    if(aiScore===5){
+        gameWinner = "AI"
+        endGame();
+    }
+    console.log(playerScore+" : "+aiScore)
+ }
+
+ const endGame = () =>{
+    console.log("The winner is "+gameWinner)
+ }
+
+
+ 

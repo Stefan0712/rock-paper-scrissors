@@ -1,107 +1,152 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
 body{
-    background-color: bisque;
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
 }
-.btns{
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 500px;
-    background-color: blanchedalmond;
-    justify-content: center;
-    align-items: center;
-}
-.btn{
-    height: 250px;
-    width: 200px;
-    margin: 25px;
-}
-.result {
-    background-color: antiquewhite;
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    max-height: 500px;
-}
-.scores{
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 500px;
-    background-color: blanchedalmond;
-    justify-content: center;
-    align-items: center;
-}
-.score{
-    height: 100px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-}
-#computerScore,
-#playerScore{
-    font-size: 40px;
-    margin: 50px;
-}
-.win{
-  font-size: 20px;
-  width: 100%;
-  text-align: center;
-}
+
 .game{
-    display: flex;
-    height: 500px;
+    height: 100vh;
+}
+.stats{
+    height: 10%;
     width: 100%;
+    display: flex;
+    background-color: #222831;
+    color: white;
+    z-index: 10;
+    position: absolute;
+}
+.player-score,
+.ai-score{
+    font-size: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
     
 }
-.end{
-    margin-top: auto;
-    height: 200px;
-    width: 100%;
+.stats div{
+    width: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    
 
 }
-#rock{
-    background-image: url('./imgs/rock.jpg');
+.player1 h2,
+.player2 h2{
+    margin-left: 25px;
+    margin-top: 25px;
 }
-#paper{
-    background-image: url('./imgs/paper.svg');
+
+.gameboard{
+    height: 50%;
+    background-color: #393E46;
 }
-#scissors{
-    background-image: url('./imgs/scissors.svg');
-}
-#rock,
-#paper,
-#scissors{
-    background-repeat: no-repeat;
-    background-size: 100px;
-}
-.showMoves{
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    align-items: center;
-    justify-items: center;
-    height: 250px;  
-}
-.moveImg{
-    height: 200px;
-    width: 200px;
-    background-repeat: no-repeat;
-    background-size: 200px;
-}
-.vs{
-    font-size: 100px;
-}
-.playerMove,
-.computerMove{
+.options{
+    height: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    background-color: #222831;
+}
+.options img{
+    height: 100px;
+    width: 100px;
+    filter: invert();
+}
+.options button{
+    height: 110px;
+    width: 110px;
+    margin: 0px 25px;
+    background-color: #393E46;
+}
+.history{
+    height: 15%;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    position: relative;
+    background-color: #393E46;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.history-item{
+    height: 100px;
+    width: 100px;
+    margin: 2px;
+    background-color: rgba(211, 211, 211, 0.08);
+}
+.player-item{
+    border-bottom: 1px solid green;
+}
+.ai-item{
+    border-bottom: 1px solid red;
+}
+.hidden{
+    display: none;
+}
+.start-screen{
+    height: 100%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#start-game-btn{
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    margin: 25px;
+}
+.show{
+    display: flex;
+}
+.player-choice,
+.ai-choice{
+    height: 200px;
+    width: 200px;
+    filter: invert();
+    z-index: 1;
+    transform: translateY(+200%);
+}
+
+.player-move{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ai-move{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.result{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+}
+.gameboard{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.moveUp{
+    transition: transform 0.5s;
+    transform: translateY(-200%);
+}
+.moveCenter{
+    transition: transform 0.5s;
+    transform: translateY(0);
 }
