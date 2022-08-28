@@ -8,6 +8,7 @@ body{
 
 .game{
     height: 100vh;
+    background-color: #222831;
 }
 .stats{
     height: 10%;
@@ -62,6 +63,9 @@ body{
     margin: 0px 25px;
     background-color: #393E46;
 }
+.options button:hover{
+    background-color: #2d3138;
+}
 .history{
     height: 15%;
     display: flex;
@@ -77,6 +81,15 @@ body{
     width: 100px;
     margin: 2px;
     background-color: rgba(211, 211, 211, 0.08);
+    animation: 0.3s pop-up 1;
+}
+@keyframes pop-up {
+    0%{
+        transform: scale(0,0);
+    }
+    100%{
+        transform: scale(1,1);
+    }
 }
 .player-item{
     border-bottom: 1px solid green;
@@ -85,7 +98,7 @@ body{
     border-bottom: 1px solid red;
 }
 .hidden{
-    display: none;
+    display: none !important;
 }
 .start-screen{
     height: 100%;
@@ -109,10 +122,11 @@ body{
     height: 200px;
     width: 200px;
     filter: invert();
-    z-index: 1;
-    transform: translateY(+200%);
+    animation: 0.5s pop-up 1;
 }
 
+
+.ai-move,
 .player-move{
     width: 30%;
     height: 100%;
@@ -120,13 +134,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-.ai-move{
-    width: 30%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .result{
     width: 20%;
     height: 100%;
@@ -142,11 +150,49 @@ body{
     align-items: center;
     justify-content: center;
 }
-.moveUp{
-    transition: transform 0.5s;
-    transform: translateY(-200%);
+.endScreen{
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background-color: white;
+    z-index: 15;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.moveCenter{
-    transition: transform 0.5s;
-    transform: translateY(0);
+.end-menu{
+    height: 250px;
+    width: 300px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.end-menu h2{
+    margin-bottom: auto;
+    margin-top: 30px;
+}
+.end-menu h3{
+    margin-bottom: auto;
+}
+.end-menu #restart-btn{
+    width: 100px;
+    height: 30px;
+    border: 1px solid lightgray;
+    background-color: white;
+    margin-bottom: 25px;
+}
+::-webkit-scrollbar{
+    background-color: gray;
+    padding: 1px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #343e4d;
+    border: 1px solid #647691;
 }

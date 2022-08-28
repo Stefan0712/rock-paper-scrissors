@@ -9,6 +9,7 @@ let isGameStarted = false;
 
 
 
+
 const addToHistory = (option, p) =>{
     const historyDiv = document.querySelector(".history");
     const el = document.createElement("img");
@@ -24,21 +25,14 @@ const addToHistory = (option, p) =>{
 }
 const showPlayerChoice = (img) =>{
     let playerBoard = document.querySelector(".player-move");
-    
-    if(playerBoard.children.length > 0){
-        document.querySelector('.player-choice').classList.add("moveUp")
-        setTimeout(()=>{
-            playerBoard.removeChild(document.querySelector(".player-choice"))
-        }, 1000)
+    if(playerBoard.children.length  >  0){  
+        playerBoard.removeChild(document.querySelector(".player-choice"))
     }
     let playerEl = document.createElement("img");
     playerEl.classList.add("player-choice")
     playerEl.setAttribute('src',img)
     playerBoard.appendChild(playerEl)
-    setTimeout(()=>{
-        document.querySelector('.player-choice').classList.add("moveCenter")
-    }, 100)
-    
+ 
    
 
    
@@ -47,15 +41,16 @@ const showPlayerChoice = (img) =>{
  }
  const showAiChoice = (aiImg) =>{
     let aiBoard = document.querySelector(".ai-move");
-
-    if(aiBoard.children.length > 0){
+    
+    
+    if(aiBoard.children.length  >  0){  
         aiBoard.removeChild(document.querySelector(".ai-choice"))
     }
-
     let aiEl = document.createElement("img");
     aiEl.classList.add("ai-choice")
     aiEl.setAttribute('src',aiImg)
     aiBoard.appendChild(aiEl)
+   
  }
 
 const handleRock = () => {
@@ -89,18 +84,24 @@ const handleAi = () =>{
     if(nr === 0 || nr===3){
         let aiImg = "./imgs/rock.jpg"
         showAiChoice(aiImg)
-        addToHistory(aiImg,"ai")
+        setTimeout(()=>{
+            addToHistory(aiImg,"ai")
+        },300)
         aiMove="rock"
     }else if(nr === 1 || nr===4){
         let aiImg = "./imgs/paper.svg";
         showAiChoice(aiImg)
-        addToHistory(aiImg,"ai")
+        setTimeout(()=>{
+            addToHistory(aiImg,"ai")
+        },300)
         aiMove="paper"
 
     }else if(nr===2 || nr===5){
         let aiImg = "./imgs/scissors.svg"
         showAiChoice(aiImg)
-        addToHistory(aiImg,"ai")
+        setTimeout(()=>{
+            addToHistory(aiImg,"ai")
+        },300)
         aiMove="scissors";
     }
 }
@@ -135,6 +136,7 @@ const compare = () =>{
         document.querySelector(".start-screen").classList.remove("show")
         document.querySelector(".game").classList.remove("hidden")
     }
+    document.querySelector(".result").innerHTML = "Please pick an option!"
  }
 
  const handleGame = () =>{
@@ -155,17 +157,19 @@ const compare = () =>{
  const checkScore = () =>{
     if(playerScore===5){
         gameWinner = "Player"
-        endGame();
+        endGame(gameWinner);
     }
     if(aiScore===5){
         gameWinner = "AI"
-        endGame();
+        endGame(gameWinner);
     }
-    console.log(playerScore+" : "+aiScore)
  }
 
- const endGame = () =>{
-    console.log("The winner is "+gameWinner)
+ const endGame = (winner) =>{
+    document.querySelector(".endScreen").classList.remove("hidden")
+
+    document.querySelector("#winner-name").innerHTML = winner;
+    
  }
 
 
